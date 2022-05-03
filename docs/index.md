@@ -65,5 +65,4 @@ Must generate an SSH key pair before use of the root access function. In the Win
 It is accessible via the [https://www.putty.org](https://www.putty.org)  site. The SSH client (PuTTY.exe) also accessible here.
 (See the details in the “SSH Connection” chapter.) The private key never leaves the operator’s PC. The public key is necessary for the connection via the SSH protocol. 
 
-...........
 

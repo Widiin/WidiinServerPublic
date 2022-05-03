@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Widiin Server</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Widiin Server</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Overview</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="login/" class="nav-link">Login</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="login/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#widiin-server-functions" class="nav-link">WiDiIn server functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#login" class="nav-link">Login</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#device-overview" class="nav-link">Device overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#logout" class="nav-link">Logout</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#set-public-key" class="nav-link">Set public key</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="overview">Overview</h1>
+<p>This block diagram is the overview of the connection cannels and possible transfer methods:
+<img alt="widiin_overview" src="imgs/widiin_overview.svg" /></p>
+<h4 id="notes">Notes</h4>
+<ul>
+<li>The direction of the arrows shows the connection directions from the originator to the target. </li>
+<li>The JTM-02 immediately connects to the widiin server when it is powered. The connection is encrypted. </li>
+<li>“Internal services” in the JTM-02: file server, SSH server in (port: 22), web server (port: 80).</li>
+<li>“Other Services”: 3rd party services, like the Time Server, AgriRouter or other servers.</li>
+<li>Present documentation does not describe the internal interfaces, but these are also accessible.</li>
+</ul>
+<h2 id="widiin-server-functions">WiDiIn server functions</h2>
+<p>The modem status and the maintenance functions are accessible via the https://widiin.com site.
+Every modem is connected to the Widiin server via the mobile network. </p>
+<ul>
+<li>The modem to server connection is encrypted and protected by individual encryption key. 
+    The Modem keys are signed by the server key during the production time. Protocol: OpenVPN. </li>
+<li>The client to server connection is also encrypted. Protocol: https. The server’s key is signed. </li>
+</ul>
+<h2 id="login">Login</h2>
+<p>Online functions are accessible after log on the https://widiin.com site.
+Login data (first time): Serial Number and the WiFi password (visible on the add-on label).
+The registered users can be login by their email address and password. In this case the user can handle all of devices which are assigned to this operator’s account.</p>
+<p><img alt="login" src="imgs/login.png" /></p>
+<h2 id="device-overview">Device overview</h2>
+<p>The device overview is visible after the valid authentication. The existing authentication process uses the device itself, therefore the overview will be visible if the device is online (accessible over the mobile network).
+The list of data is not refreshing automatically for reducing the data traffic. The data content can be updating any time by the refresh function of the web browser. </p>
+<h3 id="printed-sections">Printed sections</h3>
+<ul>
+<li>Identification:<ul>
+<li>Serial Number </li>
+<li>Modem’s IMEI: this number identifies the modem on the cellular network</li>
+<li>ICCID: individual number of the SIM card</li>
+<li>MSISDN is the phone number of the SIM card (accessible only if it is published)</li>
+</ul>
+</li>
+<li>Connection: <ul>
+<li>shows name of the mobile operator, type of network and the signal strength. </li>
+<li>The traffic is the sum of transferred data since start-up time</li>
+</ul>
+</li>
+<li>Environment: <ul>
+<li>measured inside temperature and the voltage of the power source.</li>
+</ul>
+</li>
+<li>Time: <ul>
+<li>the device local time, and the Uptime is the elapsed time since power-on. </li>
+</ul>
+</li>
+<li>Position: <ul>
+<li>actual GNSS info. GNSS signal is necessary for the visible values.  </li>
+</ul>
+</li>
+<li>Network: <ul>
+<li>own IP addresses of the built-in interfaces. </li>
+<li>WiFi (the SSID is also accessible), </li>
+<li>USB interface. The “acm0” virtual network interface is accessible in client mode only. </li>
+<li>ETHERNET: this IP address is active if the external JTMX-ETH interface is present. </li>
+</ul>
+</li>
+<li>USB: <ul>
+<li>actual direction of the OTG interface. The “client” mode is fit to the connection to PC</li>
+</ul>
+</li>
+</ul>
+<p><img alt="device_overview" src="imgs/device_overview.png" /></p>
+<h2 id="logout">Logout</h2>
+<p>Exits form the actual session. The session also will be closed if the browser’s page is closed.</p>
+<p><img alt="logout" src="imgs/logout.png" /></p>
+<h2 id="set-public-key">Set public key</h2>
+<p>The JTM-02 uses the key based authentication for the root login. The user’s individual public key is necessary for the SSH connection to the modem. This function uploads and permanently stores the public key to the modem. The modem owner can stores one root access key in the modem. The new key inactivates the earlier issued root access. </p>
+<p>Must generate an SSH key pair before use of the root access function. In the Windows environment can be do it by the PuTTYgen (PuTTY Key Generator) program. 
+It is accessible via the <a href="https://www.putty.org">https://www.putty.org</a>  site. The SSH client (PuTTY.exe) also accessible here.
+(See the details in the “SSH Connection” chapter.) The private key never leaves the operator’s PC. The public key is necessary for the connection via the SSH protocol. </p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.2.3
+Build Date UTC : 2022-05-03 10:17:12.934591+00:00
+-->

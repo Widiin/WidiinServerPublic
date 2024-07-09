@@ -1,6 +1,6 @@
 # Overview
 This block diagram is the overview of the connection cannels and possible transfer methods:
-![widiin_overview](imgs/widiin_overview.svg)
+![widiin_overview](https://raw.githubusercontent.com/Widiin/WidiinServerPublic/main/docs/imgs/widiin_overview.svg)
 #### Notes
 *   The direction of the arrows shows the connection directions from the originator to the target. 
 *   The JTM-02 immediately connects to the widiin server when it is powered. The connection is encrypted. 
@@ -22,7 +22,7 @@ Online functions are accessible after log on the https://widiin.com site.
 Login data (first time): Serial Number and the WiFi password (visible on the add-on label).
 The registered users can be login by their email address and password. In this case the user can handle all of devices which are assigned to this operator’s account.
 
-![login](imgs/login.png)
+![login](https://raw.githubusercontent.com/Widiin/WidiinServerPublic/main/docs/imgs/login.png)
 
 ## Device overview
 The device overview is visible after the valid authentication. The existing authentication process uses the device itself, therefore the overview will be visible if the device is online (accessible over the mobile network).
@@ -51,12 +51,12 @@ The list of data is not refreshing automatically for reducing the data traffic. 
 - USB: 
     - actual direction of the OTG interface. The “client” mode is fit to the connection to PC
 
-![device_overview](imgs/device_overview.png)
+![device_overview](https://raw.githubusercontent.com/Widiin/WidiinServerPublic/main/docs/imgs/device_overview.png)
 
 ##	Logout
 Exits form the actual session. The session also will be closed if the browser’s page is closed.
 
-![logout](imgs/logout.png)
+![logout](https://raw.githubusercontent.com/Widiin/WidiinServerPublic/main/docs/imgs/logout.png)
 
 ## Set public key
 The JTM-02 uses the key based authentication for the root login. The user’s individual public key is necessary for the SSH connection to the modem. This function uploads and permanently stores the public key to the modem. The modem owner can stores one root access key in the modem. The new key inactivates the earlier issued root access. 
@@ -64,5 +64,3 @@ The JTM-02 uses the key based authentication for the root login. The user’s in
 Must generate an SSH key pair before use of the root access function. In the Windows environment can be do it by the PuTTYgen (PuTTY Key Generator) program. 
 It is accessible via the [https://www.putty.org](https://www.putty.org)  site. The SSH client (PuTTY.exe) also accessible here.
 (See the details in the “SSH Connection” chapter.) The private key never leaves the operator’s PC. The public key is necessary for the connection via the SSH protocol. 
-
-Testtest
